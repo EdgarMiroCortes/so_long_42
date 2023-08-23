@@ -6,7 +6,7 @@
 /*   By: emiro-co <emiro-co@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 09:43:42 by emiro-co          #+#    #+#             */
-/*   Updated: 2023/08/21 23:00:02 by emiro-co         ###   ########.fr       */
+/*   Updated: 2023/08/23 15:19:26 by emiro-co         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,16 @@ typedef struct s_map
 	int			cols;
 	int			coins;
 	char		**box;
+	int			map_ok;
 }	t_map;
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-int		close(int keycode, t_vars *vars);
+//int		close(int keycode, t_vars *vars);
 t_map	ft_readmap(char *path);
+char	**fill_map(char *path, int size);
+int		size_map_rows(char *path);
+int		size_map_cols(char *path);
+
+
+
+

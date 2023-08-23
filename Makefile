@@ -6,19 +6,22 @@ LFT			=	libft/libft.a
 INC			=	-I ./inc -I ./libft -I ./mlx
 LIB			=	-L ./libft -Lmlx -lmlx -framework OpenGL -framework AppKit
 OBJ			=	$(patsubst src%, obj%, $(SRC:.c=.o))
-SRC			=	src/so_long.c
+SRC			=	src/so_long.c\
+				src/read.c\
 
-all:		$(MLX) $(LFT) obj $(NAME)
+all:		$(MLX) makelib obj $(NAME)
 
-$(NAME):	$(OBJ)
-			$(CC) $(FLAGS) -fsanitize=address -o $@ $^ $(LIB)
+$(NAME):	$(OBJ) Makefile
+			$(CC) $(FLAGS) $(LIB) $(OBJ) $(LFT) -o $@
+
+# -fsanitize=address
 
 $(MLX):
 			@echo " [ .. ] | Compiling minilibx.."
 			@make -s -C mlx
 			@echo " [ OK ] | Minilibx ready!"
 
-$(LFT):		
+makelib:		
 			@echo " [ .. ] | Compiling libft.."
 			@make -s -C libft
 			@echo " [ OK ] | Libft ready!"

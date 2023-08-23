@@ -6,7 +6,7 @@
 #    By: emiro-co <emiro-co@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/12 18:58:11 by emiro-co          #+#    #+#              #
-#    Updated: 2023/07/12 19:02:24 by emiro-co         ###   ########.fr        #
+#    Updated: 2023/08/23 14:13:03 by emiro-co         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,10 +64,19 @@ FILESPRINTF		=	ft_digit.c\
 					ft_ptr.c\
 					ft_ui.c\
 					utils.c
-
+					
 SRCPRINTF 		=	$(addprefix $(PRINTF),$(FILESPRINTF))
 
 OBJSPRINTF		= 	$(SRCPRINTF:.c=.o)
+
+GNL 			= ./gnl/
+
+FILESGNL		=	get_next_line.c\
+					get_next_line_utils.c
+
+SRCGNL 		=	$(addprefix $(GNL),$(FILESGNL))
+
+OBJSGNL		= 	$(SRCGNL:.c=.o)
 
 CC				= gcc
 RM				= rm -f
@@ -82,11 +91,11 @@ all:			$(NAME)
 %.o:		 	%.c $(LIB_H)
 				$(CC) $(CFLAGS) -c -o $@ $<
 
-$(NAME):		$(OBJS) $(OBJSPRINTF)
-				ar rcs $(NAME) $(OBJS) $(OBJSPRINTF)
+$(NAME):		$(OBJS) $(OBJSPRINTF) $(OBJSGNL)
+				ar rcs $(NAME) $(OBJS) $(OBJSPRINTF) $(OBJSGNL)
 
 clean:
-				$(RM) $(OBJS) $(OBJSPRINTF)
+				$(RM) $(OBJS) $(OBJSPRINTF) $(OBJSGNL)
 
 fclean:			clean
 				$(RM) $(NAME)
