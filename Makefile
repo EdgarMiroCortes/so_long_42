@@ -8,7 +8,9 @@ LIB			=	-L ./libft -Lmlx -lmlx -framework OpenGL -framework AppKit
 OBJ			=	$(patsubst src%, obj%, $(SRC:.c=.o))
 SRC			=	src/so_long.c\
 				src/read.c\
-				src/read2.c
+				src/set_sizes.c\
+				src/check_sol.c\
+				src/moves.c
 
 all:		$(MLX) makelib obj $(NAME)
 
