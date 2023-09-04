@@ -6,7 +6,7 @@
 /*   By: emiro-co <emiro-co@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 09:43:42 by emiro-co          #+#    #+#             */
-/*   Updated: 2023/08/30 17:11:05 by emiro-co         ###   ########.fr       */
+/*   Updated: 2023/09/04 17:09:56 by emiro-co         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,22 +55,6 @@ typedef struct s_point
 	int			y;
 }				t_point;
 
-typedef struct s_vars
-{
-	void		*mlx;
-	void		*win;
-}				t_vars;
-
-enum {
-	ON_KEYDOWN = 2,
-	ON_KEYUP = 3,
-	ON_MOUSEDOWN = 4,
-	ON_MOUSEUP = 5,
-	ON_MOUSEMOVE = 6,
-	ON_EXPOSE = 12,
-	ON_DESTROY = 17
-};
-
 typedef struct s_map
 {
 	int			rows;
@@ -81,11 +65,32 @@ typedef struct s_map
 	int			solution;
 	int			format;
 	int			walls;
+	int			moves;
+	int			finished;
 	t_point		size;
 	t_point		begin;
 	t_point		act;
 	t_point		exit;
 }	t_map;
+
+typedef struct s_vars
+{
+	void		*mlx;
+	void		*win;
+	t_map		map;
+}				t_vars;
+
+enum {
+	ON_KEYDOWN = 125,
+	ON_KEYUP = 126,
+	ON_KEYIZQ = 123,
+	ON_KEYDER= 124,
+	ON_MOUSEDOWN = 4,
+	ON_MOUSEUP = 5,
+	ON_MOUSEMOVE = 6,
+	ON_EXPOSE = 12,
+	ON_DESTROY = 17
+};
 
 /* MLX UTILS */
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
@@ -107,13 +112,14 @@ char		**set_solution_box(char **map, int rows, int cols);
 void		fill(char **tab, t_point size, t_point cur, char to_fill);
 void		flood_fill(char **tab, t_point size, t_point begin);
 int			check_sol(t_point exit, char **map);
+int			check_all(t_map map);
 
 /* MOVES */
 int			ft_move(int key, void *map);
-int			move_up(t_map map);
-int			move_down(t_map map);
-int			move_izq(t_map map);
-int			move_der(t_map map);
+int			move_up(t_map *map);
+int			move_down(t_map *map);
+int			move_izq(t_map *map);
+int			move_der(t_map *map);
 
 /* PURE SO_LONG FUNCTIONS */
 t_map		ft_readmap(char *path);

@@ -6,7 +6,7 @@
 /*   By: emiro-co <emiro-co@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 10:32:10 by emiro-co          #+#    #+#             */
-/*   Updated: 2023/08/30 16:06:47 by emiro-co         ###   ########.fr       */
+/*   Updated: 2023/09/04 15:31:22 by emiro-co         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ t_point	set_point(char **map, char c)
 
 	i = 0;
 	j = 0;
+	begin.x = 0;
+	begin.y = 0;
 	while (map[i])
 	{
 		j = 0;
@@ -62,6 +64,7 @@ t_point	set_point(char **map, char c)
 			{
 				begin.y = i;
 				begin.x = j;
+				return (begin);
 			}
 			j++;
 		}

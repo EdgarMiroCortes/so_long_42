@@ -4,6 +4,7 @@
 		"__bit_reference": "c",
 		"algorithm": "c",
 		"array": "c",
-		"ios": "c"
+		"ios": "c",
+		"libft.h": "c"
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: emiro-co <emiro-co@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 10:32:10 by emiro-co          #+#    #+#             */
-/*   Updated: 2023/08/30 16:59:02 by emiro-co         ###   ########.fr       */
+/*   Updated: 2023/09/04 17:08:57 by emiro-co         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_map	ft_readmap(char *path)
 {
 	t_map	map;
 
+	map.moves = 0;
 	map.format = check_format(path);
 	map.rows = size_map_rows(path);
 	map.box = fill_map(path, map.rows);
@@ -36,6 +37,19 @@ t_map	ft_readmap(char *path)
 	map.box_for_solution = set_solution_box(map.box, map.rows, map.cols);
 	flood_fill(map.box_for_solution, map.size, map.begin);
 	map.solution = check_sol(map.exit, map.box_for_solution);
+	if (check_all(map) == map.coins + 1)
+		map.solution = 1;
+	else
+	{	
+		map.solution = 0;
+	}
+	ft_printf("\nRows: %d, Cols: %d\n", map.rows, map.cols);
+	ft_printf("Format Status: %d, Coins: %d\n", map.format, map.coins);
+	ft_printf("Walls Stauts: %d\n", map.walls);
+	ft_printf("Map Begin: cols: %d. rows: %d\n", map.begin.x, map.begin.y);
+	ft_printf("Map Act: cols: %d. rows: %d\n", map.act.x, map.act.y);
+	ft_printf("Map Exit: cols: %d. rows: %d\n", map.exit.x, map.exit.y);
+	ft_printf("Solution: %d", map.solution);
 	return (map);
 }
 

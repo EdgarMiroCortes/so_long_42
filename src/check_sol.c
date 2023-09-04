@@ -6,7 +6,7 @@
 /*   By: emiro-co <emiro-co@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 10:32:10 by emiro-co          #+#    #+#             */
-/*   Updated: 2023/08/30 16:04:02 by emiro-co         ###   ########.fr       */
+/*   Updated: 2023/09/04 17:06:31 by emiro-co         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,35 @@ void	fill(char **tab, t_point size, t_point cur, char to_fill)
 void	flood_fill(char **tab, t_point size, t_point begin)
 {
 	fill(tab, size, begin, tab[begin.y][begin.x]);
+}
+
+int	check_all(t_map map)
+{
+	int			things;
+	t_point		coin;
+	int			i;
+	int			j;
+
+	i = 0;
+	j = 0;
+	things = 0;
+	things += check_sol(map.exit, map.box_for_solution);
+	while (map.box[i])
+	{
+		j = 0;
+		while (map.box[i][j] != '\0')
+		{
+			if (map.box[i][j] == 'C')
+			{
+				coin.y = i;
+				coin.x = j;
+				things += check_sol(coin, map.box_for_solution);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (things);
 }
 
 int	check_sol(t_point exit, char **map)

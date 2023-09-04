@@ -6,7 +6,7 @@
 /*   By: emiro-co <emiro-co@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 20:25:12 by emiro-co          #+#    #+#             */
-/*   Updated: 2023/08/30 17:24:34 by emiro-co         ###   ########.fr       */
+/*   Updated: 2023/09/04 12:58:40 by emiro-co         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,16 @@ int	closewindow(t_vars *vars)
 int	main(int argc, char **argv)
 {
 	t_vars		vars;
-	t_map		map;
 
 	if (argc != 2)
 		exit(0);
-	map = ft_readmap(argv[1]);
+	vars.map = ft_readmap(argv[1]);
 	vars.mlx = mlx_init();
-	vars.win = mlx_new_window(vars.mlx, (map.cols * 50), (map.rows * 50), ":)");
+	vars.win = mlx_new_window(vars.mlx, (vars.map.cols * 50), (vars.map.rows * 50), ":)");
 	mlx_hook(vars.win, 2, 1L << 0, closewindow, &vars);
 	mlx_hook(vars.win, 17, 0, closewindow, &vars);
-	mlx_hook(vars.win, KEYDOWN, 1L << 0, ft_move, (void *)&map);
-	ft_printmap(map, vars, (ft_ini_objs(vars.mlx)));
+	mlx_hook(vars.win, KEYDOWN, 1L << 0, ft_move, (void *)&vars);
+	ft_printmap(vars.map, vars, (ft_ini_objs(vars.mlx)));
 	mlx_loop(vars.mlx);
 }
 
