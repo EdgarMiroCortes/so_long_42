@@ -6,7 +6,7 @@
 /*   By: emiro-co <emiro-co@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 10:32:10 by emiro-co          #+#    #+#             */
-/*   Updated: 2023/09/04 17:08:57 by emiro-co         ###   ########.fr       */
+/*   Updated: 2023/09/04 18:01:53 by emiro-co         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,6 @@ t_map	ft_readmap(char *path)
 	{	
 		map.solution = 0;
 	}
-	ft_printf("\nRows: %d, Cols: %d\n", map.rows, map.cols);
-	ft_printf("Format Status: %d, Coins: %d\n", map.format, map.coins);
-	ft_printf("Walls Stauts: %d\n", map.walls);
-	ft_printf("Map Begin: cols: %d. rows: %d\n", map.begin.x, map.begin.y);
-	ft_printf("Map Act: cols: %d. rows: %d\n", map.act.x, map.act.y);
-	ft_printf("Map Exit: cols: %d. rows: %d\n", map.exit.x, map.exit.y);
-	ft_printf("Solution: %d", map.solution);
 	return (map);
 }
 

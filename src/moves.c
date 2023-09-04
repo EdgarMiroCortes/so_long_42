@@ -6,7 +6,7 @@
 /*   By: emiro-co <emiro-co@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 20:25:12 by emiro-co          #+#    #+#             */
-/*   Updated: 2023/09/04 17:17:38 by emiro-co         ###   ########.fr       */
+/*   Updated: 2023/09/04 18:07:47 by emiro-co         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,24 +20,26 @@ int	ft_move(int key, void *vars)
 	if ((key == ON_KEYUP) && (move_up(&(aux->map))))
 	{
 		aux->map.act.x --;
-		ft_printf("Moves: %d, Coins: %d, Finished: %d \n", (aux->map.moves)++, aux->map.coins, aux->map.finished);
+		//ft_printf("Moves: %d, Coins: %d, Finished: %d \n", (aux->map.moves)++, aux->map.coins, aux->map.finished);
 	}
 	if ((key == ON_KEYDOWN) && move_down(&(aux->map)))
 	{
 		aux->map.act.x ++;
-		ft_printf("Moves: %d, Coins: %d, Finished: %d \n", (aux->map.moves)++, aux->map.coins, aux->map.finished);
+		//ft_printf("Moves: %d, Coins: %d, Finished: %d \n", (aux->map.moves)++, aux->map.coins, aux->map.finished);
 	}
 	if ((key == ON_KEYIZQ) && move_izq(&(aux->map)))
 	{
 		aux->map.act.y --;
-		ft_printf("Moves: %d, Coins: %d, Finished: %d \n", (aux->map.moves)++, aux->map.coins, aux->map.finished);
+		//ft_printf("Moves: %d, Coins: %d, Finished: %d \n", (aux->map.moves)++, aux->map.coins, aux->map.finished);
 	}
 	if ((key == ON_KEYDER) && move_der(&(aux->map)))
 	{
 		aux->map.act.y ++;
-		ft_printf("Moves: %d, Coins: %d, Finished: %d \n", (aux->map.moves)++, aux->map.coins, aux->map.finished);
+		//ft_printf("Moves: %d, Coins: %d, Finished: %d \n", (aux->map.moves)++, aux->map.coins, aux->map.finished);
 	}
 	ft_printmap(aux->map, *aux, (ft_ini_objs(aux->mlx)));
+	if (aux->map.finished == 1)
+		ft_printf("you won");
 	return (1);
 }
 
