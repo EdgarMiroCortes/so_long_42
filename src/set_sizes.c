@@ -6,7 +6,7 @@
 /*   By: emiro-co <emiro-co@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 10:32:10 by emiro-co          #+#    #+#             */
-/*   Updated: 2023/09/04 15:31:22 by emiro-co         ###   ########.fr       */
+/*   Updated: 2023/09/06 11:48:15 by emiro-co         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ t_point	set_size(int cols, int rows)
 {
 	t_point	size;
 
-	size.x = cols - 1;
-	size.y = rows - 1;
+	size.col = cols - 1;
+	size.row = rows - 1;
 	return (size);
 }
 
@@ -53,8 +53,8 @@ t_point	set_point(char **map, char c)
 
 	i = 0;
 	j = 0;
-	begin.x = 0;
-	begin.y = 0;
+	begin.col = 0;
+	begin.row = 0;
 	while (map[i])
 	{
 		j = 0;
@@ -62,8 +62,8 @@ t_point	set_point(char **map, char c)
 		{
 			if (map[i][j] == c)
 			{
-				begin.y = i;
-				begin.x = j;
+				begin.row = i;
+				begin.col = j;
 				return (begin);
 			}
 			j++;

@@ -10,7 +10,8 @@ SRC			=	src/so_long.c\
 				src/read.c\
 				src/set_sizes.c\
 				src/check_sol.c\
-				src/moves.c
+				src/moves.c\
+				src/mlx_utils.c
 
 all:		$(MLX) makelib obj $(NAME)
 

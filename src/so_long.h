@@ -6,7 +6,7 @@
 /*   By: emiro-co <emiro-co@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 09:43:42 by emiro-co          #+#    #+#             */
-/*   Updated: 2023/09/04 17:09:56 by emiro-co         ###   ########.fr       */
+/*   Updated: 2023/09/06 16:06:57 by emiro-co         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@
 # define EXPOSE 12
 # define DESTROY 17
 
-//FLAGS    := -Lmlx -lmlx -framework OpenGL -framework AppKit
-
 typedef struct s_data
 {
 	void		*img;
@@ -47,12 +45,13 @@ typedef struct s_objects
 	void		*floor;
 	void		*wall;
 	void		*door;
+	void		*win;
 }				t_object;
 
 typedef struct s_point
 {
-	int			x;
-	int			y;
+	int			col;
+	int			row;
 }				t_point;
 
 typedef struct s_map
@@ -81,10 +80,10 @@ typedef struct s_vars
 }				t_vars;
 
 enum {
-	ON_KEYDOWN = 125,
-	ON_KEYUP = 126,
-	ON_KEYIZQ = 123,
-	ON_KEYDER= 124,
+	ON_KEYDOWN = 1,
+	ON_KEYUP = 13,
+	ON_KEYIZQ = 0,
+	ON_KEYDER= 2,
 	ON_MOUSEDOWN = 4,
 	ON_MOUSEUP = 5,
 	ON_MOUSEMOVE = 6,
@@ -94,6 +93,8 @@ enum {
 
 /* MLX UTILS */
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
+int			closewindow_esc(int key, t_vars *vars);
+int			closewindow(t_vars *vars);
 
 /* MAP PARSING */
 char		**fill_map(char *path, int size);
@@ -124,7 +125,9 @@ int			move_der(t_map *map);
 /* PURE SO_LONG FUNCTIONS */
 t_map		ft_readmap(char *path);
 void		ft_printmap(t_map map, t_vars vars, t_object obj);
+void		ft_select_img(t_vars vr, t_object obj, t_point x, t_point i);
 t_object	ft_ini_objs(void *mlx);
 int			ft_move(int key, void *map);
+void		ft_free(t_vars *vars);
 
 #endif

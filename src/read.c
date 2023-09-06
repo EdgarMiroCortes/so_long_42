@@ -6,7 +6,7 @@
 /*   By: emiro-co <emiro-co@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 10:32:10 by emiro-co          #+#    #+#             */
-/*   Updated: 2023/09/04 18:01:53 by emiro-co         ###   ########.fr       */
+/*   Updated: 2023/09/06 13:49:14 by emiro-co         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,10 @@ t_map	ft_readmap(char *path)
 	map.exit = set_point(map.box, 'E');
 	map.box_for_solution = set_solution_box(map.box, map.rows, map.cols);
 	flood_fill(map.box_for_solution, map.size, map.begin);
-	map.solution = check_sol(map.exit, map.box_for_solution);
 	if (check_all(map) == map.coins + 1)
 		map.solution = 1;
 	else
-	{	
 		map.solution = 0;
-	}
 	return (map);
 }
 
