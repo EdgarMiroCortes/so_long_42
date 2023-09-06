@@ -6,7 +6,7 @@
 /*   By: emiro-co <emiro-co@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 20:25:12 by emiro-co          #+#    #+#             */
-/*   Updated: 2023/09/06 16:01:47 by emiro-co         ###   ########.fr       */
+/*   Updated: 2023/09/06 17:03:30 by emiro-co         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	ft_move(int key, void *vars)
 		aux->map.act.col ++;
 		ft_printf("Moves: %d, Coins: %d\n", ++(aux->map.moves), aux->map.coins);
 	}
-	ft_printmap(aux->map, *aux, (ft_ini_objs(aux->mlx)));
+	ft_printmap(aux->map, *aux, aux->obj);
 	return (1);
 }
 

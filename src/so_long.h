@@ -6,7 +6,7 @@
 /*   By: emiro-co <emiro-co@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 09:43:42 by emiro-co          #+#    #+#             */
-/*   Updated: 2023/09/06 16:06:57 by emiro-co         ###   ########.fr       */
+/*   Updated: 2023/09/06 18:03:28 by emiro-co         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ typedef struct s_vars
 	void		*mlx;
 	void		*win;
 	t_map		map;
+	t_object	obj;
 }				t_vars;
 
 enum {
@@ -124,10 +125,11 @@ int			move_der(t_map *map);
 
 /* PURE SO_LONG FUNCTIONS */
 t_map		ft_readmap(char *path);
+void		ft_checkmap(t_vars *vars);
 void		ft_printmap(t_map map, t_vars vars, t_object obj);
 void		ft_select_img(t_vars vr, t_object obj, t_point x, t_point i);
 t_object	ft_ini_objs(void *mlx);
 int			ft_move(int key, void *map);
-void		ft_free(t_vars *vars);
+void		ft_free_solong(t_vars *vars);
 
 #endif

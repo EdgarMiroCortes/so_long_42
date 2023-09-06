@@ -6,7 +6,7 @@
 /*   By: emiro-co <emiro-co@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 10:32:10 by emiro-co          #+#    #+#             */
-/*   Updated: 2023/09/06 13:49:14 by emiro-co         ###   ########.fr       */
+/*   Updated: 2023/09/06 17:40:00 by emiro-co         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,12 @@ char	**fill_map(char *path, int size)
 	int		fd;
 	char	**map;
 
-	map = malloc(sizeof(char *) * (size + 1));
+	map = (char **)malloc(sizeof(char *) * (size + 1));
 	i = 0;
 	fd = open(path, O_RDONLY);
 	map[i] = get_next_line(fd);
 	while (map[i])
 	{
-		ft_printf("%s", map[i]);
 		i++;
 		map[i] = get_next_line(fd);
 	}
