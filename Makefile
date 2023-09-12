@@ -11,11 +11,12 @@ SRC			=	src/so_long.c\
 				src/set_sizes.c\
 				src/check_sol.c\
 				src/moves.c\
+				src/check_map.c\
 				src/mlx_utils.c
 
 all:		$(MLX) makelib obj $(NAME)
 
-$(NAME):	$(OBJ) Makefile
+$(NAME):	$(OBJ) 
 			$(CC) $(FLAGS) $(LIB) $(OBJ) $(LFT) -o $@
 
 # -fsanitize=address
@@ -33,7 +34,7 @@ makelib:
 obj:
 			@mkdir -p obj
 
-obj/%.o:	src/%.c
+obj/%.o:	src/%.c Makefile src/so_long.h
 			$(CC) $(FLAGS) $(INC) -o $@ -c $<
 
 clean:

@@ -6,7 +6,7 @@
 /*   By: emiro-co <emiro-co@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 09:43:42 by emiro-co          #+#    #+#             */
-/*   Updated: 2023/09/12 13:06:18 by emiro-co         ###   ########.fr       */
+/*   Updated: 2023/09/12 15:27:34 by emiro-co         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ char		**fill_map(char *path, int size);
 int			check_format(char *path);
 int			check_size(char **map);
 int			check_characters(char **map, int rows);
+int			check_initials(char **map, int rows);
 int			count_coins(char **map);
 int			check_walls(char **map, int last, int col);
 
