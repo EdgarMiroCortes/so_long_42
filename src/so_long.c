@@ -6,7 +6,7 @@
 /*   By: emiro-co <emiro-co@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 20:25:12 by emiro-co          #+#    #+#             */
-/*   Updated: 2023/09/06 18:07:49 by emiro-co         ###   ########.fr       */
+/*   Updated: 2023/09/12 13:14:28 by emiro-co         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,13 @@ int	main(int argc, char **argv)
 	t_vars		vars;
 
 	if (argc != 2)
+	{
+		if (argc < 2)
+			ft_printf("Error\nMissing Argv");
+		else if (argc > 2)
+			ft_printf("Error\nMultiple Argv Detected");
 		exit(0);
+	}
 	vars.map = ft_readmap(argv[1]);
 	ft_checkmap(&vars);
 	vars.mlx = mlx_init();
@@ -62,34 +68,71 @@ void	ft_checkmap(t_vars *vars)
 {
 	if (vars->map.format != 1)
 	{
-		ft_printf("Error\nError de formato");
+		ft_printf("Error\nInvalid Extension.");
 		ft_free_solong(vars);
 	}
-	if (!vars->map.box)
+	if ((!vars->map.box) || (!vars->map.walls)
+		|| (check_size(vars->map.box) == 0)
+		|| (check_characters(vars->map.box, vars->map.rows) == 0))
 	{
-		ft_printf("Error\nError en las medidas del mapa");
+		ft_printf("Error\nMap Error.");
 		ft_free_solong(vars);
 	}
-	if (!vars->map.walls)
+	if ((vars->map.begin.col == 0 && vars->map.begin.row == 0)
+		|| (vars->map.exit.col == 0 && vars->map.exit.row == 0)
+		|| (vars->map.coins == 0))
 	{
-		ft_printf("Error\nEl mapa debe estar cerrado/rodeado de muros");
+		ft_printf("Error\n");
+		ft_printf("Map must have initial position (P), Exit (E) and Coin (C)");
 		ft_free_solong(vars);
 	}
 	if (!vars->map.solution)
 	{
-		ft_printf("Error\nEl mapa debe tener un camino valido");
+		ft_printf("Error\nThe map must have a solution.");
 		ft_free_solong(vars);
 	}
-	if (vars->map.begin.col == 0 && vars->map.begin.row == 0)
+}
+
+int	check_size(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
 	{
-		ft_printf("Error\nEl mapa debe tener minmo una posicion inicial (P), una salida (E) y un coleccionable (C).");
-		ft_free_solong(vars);
+		if (map[i][0] == '\0' && ft_strlen(map[i]) != ft_strlen(map[0]))
+		{
+			return (0);
+		}
+		i++;
 	}
-	if (vars->map.begin.col == 0 && vars->map.begin.row == 0)
+	return (1);
+}
+
+int	check_characters(char **map, int rows)
+{
+	int		i;
+	int		cols;
+	char	*perm;
+	char	act;
+	int		j;
+
+	perm = "10ECP\n";
+	i = 0;
+	cols = ft_strlen(map[0]);
+	while (i < rows)
 	{
-		ft_printf("Error\nEl mapa debe tener minmo una posicion inicial (P), una salida (E) y un coleccionable (C).");
-		ft_free_solong(vars);
+		j = 0;
+		while (j < cols)
+		{
+			act = map[i][j];
+			if (ft_strchr(perm, act) == 0)
+				return (0);
+			j++;
+		}
+		i++;
 	}
+	return (1);
 }
 
 void	ft_free_solong(t_vars *vars)
@@ -97,7 +140,6 @@ void	ft_free_solong(t_vars *vars)
 	int	i;
 
 	i = 0;
-	mlx_destroy_image(vars->mlx, vars->obj.dino);
 	while (vars->map.box[i])
 	{
 		free(vars->map.box[i]);
@@ -113,4 +155,5 @@ void	ft_free_solong(t_vars *vars)
 		i++;
 	}
 	free(vars->map.box_for_solution);
+	exit(1);
 }
