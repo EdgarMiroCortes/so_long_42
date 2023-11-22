@@ -6,7 +6,7 @@
 /*   By: emiro-co <emiro-co@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 12:26:28 by emiro-co          #+#    #+#             */
-/*   Updated: 2023/08/23 14:13:40 by emiro-co         ###   ########.fr       */
+/*   Updated: 2023/11/22 18:13:44 by emiro-co         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h>
-# include <gnl/get_next_line.h>
+# include "gnl/get_next_line.h"
 
 typedef struct s_list
 {
