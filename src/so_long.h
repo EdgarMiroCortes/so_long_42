@@ -6,7 +6,7 @@
 /*   By: emiro-co <emiro-co@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 09:43:42 by emiro-co          #+#    #+#             */
-/*   Updated: 2023/09/12 15:27:34 by emiro-co         ###   ########.fr       */
+/*   Updated: 2023/11/23 16:47:46 by emiro-co         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 # include <stdio.h>
 # include <sys/stat.h>
 # include <fcntl.h> 
-# include "../mlx/mlx.h"
+//# include "../mlx/mlx.h"
+# include "../mlx_linux/mlx.h"
 # include "../libft/libft.h"
 
 # define KEYDOWN 2
@@ -28,6 +29,7 @@
 # define MOUSEMOVE 6
 # define EXPOSE 12
 # define DESTROY 17
+
 
 typedef struct s_data
 {
@@ -41,7 +43,10 @@ typedef struct s_data
 typedef struct s_objects
 {
 	void		*fruit;
-	void		*dino;
+	void		*pac_up;
+	void		*pac_down;
+	void		*pac_izq;
+	void		*pac_der;
 	void		*floor;
 	void		*wall;
 	void		*door;
@@ -56,6 +61,7 @@ typedef struct s_point
 
 typedef struct s_map
 {
+	int			lastmove;
 	int			rows;
 	int			cols;
 	int			coins;
@@ -80,7 +86,8 @@ typedef struct s_vars
 	t_object	obj;
 }				t_vars;
 
-enum {
+/* ~~ MAC ~~ /
+//enum {
 	ON_KEYDOWN = 1,
 	ON_KEYUP = 13,
 	ON_KEYIZQ = 0,
@@ -90,6 +97,24 @@ enum {
 	ON_MOUSEMOVE = 6,
 	ON_EXPOSE = 12,
 	ON_DESTROY = 17
+};
+*/
+
+/* ~~ LINUX ~~ */
+enum {
+	ON_KEYDOWN = 115,
+	ON_KEYUP = 119,
+	ON_KEYIZQ = 97,
+	ON_KEYDER= 100,
+	ON_MOUSEDOWN = 4,
+	ON_MOUSEUP = 5,
+	ON_MOUSEMOVE = 6,
+	ON_EXPOSE = 12,
+	ON_DESTROY = 65307,
+	MOVEUP = 11,
+	MOVEDOWN = 21,
+	MOVEIZQ = 31,
+	MOVEDER = 41,
 };
 
 /* MLX UTILS */
@@ -125,6 +150,7 @@ int			move_up(t_map *map);
 int			move_down(t_map *map);
 int			move_izq(t_map *map);
 int			move_der(t_map *map);
+int			teletransport(t_map *map);
 
 /* PURE SO_LONG FUNCTIONS */
 t_map		ft_readmap(char *path);

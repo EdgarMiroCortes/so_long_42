@@ -6,7 +6,7 @@
 /*   By: emiro-co <emiro-co@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 20:25:12 by emiro-co          #+#    #+#             */
-/*   Updated: 2023/09/06 17:03:30 by emiro-co         ###   ########.fr       */
+/*   Updated: 2023/11/23 17:36:14 by emiro-co         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	ft_move(int key, void *vars)
 {
 	t_vars	*aux;
-
 	aux = (t_vars *)vars;
 	if (aux->map.finished != 1 && (key == ON_KEYUP) && (move_up(&(aux->map))))
 	{
@@ -50,6 +49,10 @@ int	move_izq(t_map *map)
 		map->finished = 1;
 		return (1);
 	}
+	if ((map->box[map->act.row][(map->act.col) - 1] == 'T') || (map->box[map->act.row][(map->act.col) - 1] == 't'))
+	{
+		return(teletransport(map));
+	}
 	if (map->box[map->act.row][(map->act.col) - 1] != '1')
 	{
 		if (map->box[map->act.row][(map->act.col) - 1] == 'C')
@@ -59,6 +62,7 @@ int	move_izq(t_map *map)
 		else
 			map->box[map->act.row][map->act.col] = '0';
 		map->box[map->act.row][(map->act.col) - 1] = 'P';
+		map->lastmove = 31;
 		return (1);
 	}
 	return (0);
@@ -73,6 +77,10 @@ int	move_der(t_map *map)
 		map->finished = 1;
 		return (1);
 	}
+	if ((map->box[map->act.row][(map->act.col) + 1] == 'T') || (map->box[map->act.row][(map->act.col) + 1] == 't'))
+	{
+		return(teletransport(map));
+	}
 	if (map->box[map->act.row][(map->act.col) + 1] != '1')
 	{
 		if (map->box[map->act.row][(map->act.col) + 1] == 'C')
@@ -82,6 +90,7 @@ int	move_der(t_map *map)
 		else
 			map->box[map->act.row][map->act.col] = '0';
 		map->box[map->act.row][(map->act.col) + 1] = 'P';
+		map->lastmove = 41;
 		return (1);
 	}
 	return (0);
@@ -105,6 +114,7 @@ int	move_up(t_map *map)
 		else
 			map->box[map->act.row][map->act.col] = '0';
 		map->box[(map->act.row) - 1][map->act.col] = 'P';
+		map->lastmove = 11;
 		return (1);
 	}
 	return (0);
@@ -128,6 +138,7 @@ int	move_down(t_map *map)
 		else
 			map->box[map->act.row][map->act.col] = '0';
 		map->box[(map->act.row) + 1][map->act.col] = 'P';
+		map->lastmove = 21;
 		return (1);
 	}
 	return (0);

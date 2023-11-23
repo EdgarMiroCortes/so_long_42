@@ -10,12 +10,17 @@ SRC			=	../src/so_long.c\
 				../src/check_sol.c\
 				../src/moves.c\
 				../src/check_map.c\
-				../src/mlx_utils.c
+				../src/mlx_utils.c\
+				../src/teletransport.c
 
 all:		makemlx makelib obj $(NAME)
 
+
 $(NAME): $(OBJ)
-	$(CC) $(OBJ) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+	$(CC) $(OBJ) -L../mlx_linux -lmlx_Linux -L../libft -lft -L/usr/lib -lXext -lX11 -lm -lz -o ../so_long
+
+#	$(NAME): $(OBJ)
+#		$(CC) $(OBJ) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
 
 # -fsanitize=address
 

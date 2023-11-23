@@ -6,7 +6,7 @@
 /*   By: emiro-co <emiro-co@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 20:25:12 by emiro-co          #+#    #+#             */
-/*   Updated: 2023/09/12 15:08:10 by emiro-co         ###   ########.fr       */
+/*   Updated: 2023/11/23 16:25:54 by emiro-co         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,11 @@ int	main(int argc, char **argv)
 		exit(0);
 	}
 	vars.map = ft_readmap(argv[1]);
+	vars.map.lastmove = 11;
 	ft_checkmap(&vars);
 	vars.mlx = mlx_init();
-	vars.win = mlx_new_window(vars.mlx, (vars.map.cols * 50), \
-		(vars.map.rows * 50), ":)");
+	vars.win = mlx_new_window(vars.mlx, (vars.map.cols * 32), \
+		(vars.map.rows * 32), ":)");
 	mlx_hook(vars.win, 17, 0, closewindow, &vars);
 	mlx_hook(vars.win, KEYUP, 1L << 0, closewindow_esc, (void *)&vars);
 	mlx_hook(vars.win, KEYDOWN, 1L << 0, ft_move, (void *)&vars);
@@ -52,9 +53,9 @@ void	ft_printmap(t_map map, t_vars vr, t_object obj)
 		while (map.box[i.col][++(i.row)])
 		{
 			ft_select_img(vr, obj, x, i);
-			x.col += 50;
+			x.col += 32;
 		}
-		x.row += 50;
+		x.row += 32;
 	}
 	if (map.finished == 1 && finish_msg != 1)
 	{

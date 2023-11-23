@@ -6,7 +6,7 @@
 /*   By: emiro-co <emiro-co@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 15:05:01 by emiro-co          #+#    #+#             */
-/*   Updated: 2023/09/12 15:40:51 by emiro-co         ###   ########.fr       */
+/*   Updated: 2023/11/23 17:32:51 by emiro-co         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	check_characters(char **map, int rows)
 	char	act;
 	int		j;
 
-	perm = "10ECP\n";
+	perm = "10ECPTt\n";
 	i = 0;
 	cols = ft_strlen(map[0]);
 	while (i < rows)
